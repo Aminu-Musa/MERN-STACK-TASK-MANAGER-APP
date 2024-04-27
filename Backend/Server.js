@@ -1,21 +1,20 @@
-const express = require("express")
-const app = express()
+const express = require("express");
+const connectDB = require("./config/connectDB");
+const dotenv = require("dotenv").config();
 
-const PORT = process.env.PORT || 5000
+const app = express();
 
-app.get("/", (req, res)=>{
-    res.send("From Backend")
-})
+const PORT = process.env.PORT || 5000;
 
+const runServer = async () => {
+  try {
+    await connectDB();
+    app.listen(PORT, () => {
+      console.log(`server running on http://localhost:${PORT}`);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-
-
-
-
-
-app.listen(PORT, ()=>{
-console.log(`server running on http://localhost:${PORT}`);
-})
-
-
-
+runServer();
