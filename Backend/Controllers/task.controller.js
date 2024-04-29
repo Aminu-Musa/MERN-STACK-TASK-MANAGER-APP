@@ -64,11 +64,14 @@ const updateTask = async (req, res) => {
     const { id } = req.params;
     const task = await Task.findByIdAndUpdate({ _id: id }, req.body, {
       new: true,
-      runValidators: true});
+      runValidators: true,
+    });
 
-      if(!task){
-        return res.status(404).json({status: 404, statusText: `No task with id: ${id} was found`})
-      }
+    if (!task) {
+      return res
+        .status(404)
+        .json({ status: 404, statusText: `No task with id: ${id} was found` });
+    }
     res
       .status(200)
       .json({ status: 200, statusText: "successfull", data: task });

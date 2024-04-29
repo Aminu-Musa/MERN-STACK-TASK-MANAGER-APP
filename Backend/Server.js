@@ -13,10 +13,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/tasks",taskRoutes)
 
-// ROUTES
-
-
-
 
 
 const PORT = process.env.PORT || 5000;
